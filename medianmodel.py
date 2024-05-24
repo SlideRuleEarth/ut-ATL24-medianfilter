@@ -1,3 +1,6 @@
+import numpy as np
+import traceback
+
 def rolling_median_bathy_classification(point_cloud, 
                          window_sizes=[51, 30, 7],
                          kdiff=0.6, kstd=1.2,
