@@ -28,8 +28,8 @@ def rolling_median_bathy_classification(point_cloud,
     mask_sea_surf[sea_surface_indices] = False
 
     heights = point_cloud['ortho_h'].to_numpy()[mask_sea_surf]
-    lons = point_cloud['longitude'].to_numpy()[mask_sea_surf]
-    lats = point_cloud['latitude'].to_numpy()[mask_sea_surf]
+    lons = point_cloud['lon_ph'].to_numpy()[mask_sea_surf]
+    lats = point_cloud['lat_ph'].to_numpy()[mask_sea_surf]
     # times = point_cloud['delta_time'].to_numpy()[mask_sea_surf]
 
     if compress_heights is not None:
@@ -288,15 +288,15 @@ def plot_pointcloud(classified_pointcloud=None, output_path=None):
 
     plt.figure(figsize=(48, 16))
     
-    plt.plot(classified_pointcloud['latitude'][classified_pointcloud['classifications'] == 0.0],
+    plt.plot(classified_pointcloud['lat_ph'][classified_pointcloud['classifications'] == 0.0],
                 classified_pointcloud['ortho_h'][classified_pointcloud['classifications'] == 0.0],
                 'o', color='0.7', label='Noise', markersize=2, zorder=1)
     
-    plt.plot(classified_pointcloud['latitude'][classified_pointcloud['classifications'] == 41.0],
+    plt.plot(classified_pointcloud['lat_ph'][classified_pointcloud['classifications'] == 41.0],
                 classified_pointcloud['ortho_h'][classified_pointcloud['classifications'] == 41.0],
                 'o', color='blue', label='Sea Surface', markersize=5, zorder=5)
     
-    plt.plot(classified_pointcloud['latitude'][classified_pointcloud['classifications'] == 40.0],
+    plt.plot(classified_pointcloud['lat_ph'][classified_pointcloud['classifications'] == 40.0],
                 classified_pointcloud['ortho_h'][classified_pointcloud['classifications'] == 40.0],
                 'o', color='red', label='Bathymetry', markersize=5, zorder=5)
 
@@ -339,28 +339,28 @@ def plot_pointcloud(classified_pointcloud=None, output_path=None):
 #     ylim_min = -80
 #     ylim_max = 20
     
-#     ax[0].plot(classified_pointcloud['latitude'][classified_pointcloud['classifications'] == 0.0],
+#     ax[0].plot(classified_pointcloud['lat_ph'][classified_pointcloud['classifications'] == 0.0],
 #                 classified_pointcloud['ortho_h'][classified_pointcloud['classifications'] == 0.0],
 #                 'o', color='0.7', label='Noise', markersize=2, zorder=1)
     
-#     ax[0].plot(classified_pointcloud['latitude'][classified_pointcloud['classifications'] == 41.0],
+#     ax[0].plot(classified_pointcloud['lat_ph'][classified_pointcloud['classifications'] == 41.0],
 #                 classified_pointcloud['ortho_h'][classified_pointcloud['classifications'] == 41.0],
 #                 'o', color='blue', label='Sea Surface', markersize=5, zorder=5)
     
-#     ax[0].plot(classified_pointcloud['latitude'][classified_pointcloud['classifications'] == 40.0],
+#     ax[0].plot(classified_pointcloud['lat_ph'][classified_pointcloud['classifications'] == 40.0],
 #                 classified_pointcloud['ortho_h'][classified_pointcloud['classifications'] == 40.0],
 #                 'o', color='red', label='Bathymetry', markersize=5, zorder=5)
     
 
-#     ax[1].plot(classified_pointcloud['latitude'][classified_pointcloud['class_ph'] == 0.0],
+#     ax[1].plot(classified_pointcloud['lat_ph'][classified_pointcloud['class_ph'] == 0.0],
 #                 classified_pointcloud['ortho_h'][classified_pointcloud['class_ph'] == 0.0],
 #                 'o', color='0.7', label='Noise', markersize=2, zorder=1)
     
-#     ax[1].plot(classified_pointcloud['latitude'][classified_pointcloud['class_ph'] == 41.0],
+#     ax[1].plot(classified_pointcloud['lat_ph'][classified_pointcloud['class_ph'] == 41.0],
 #                 classified_pointcloud['ortho_h'][classified_pointcloud['class_ph'] == 41.0],
 #                 'o', color='blue', label='Sea Surface', markersize=5, zorder=5)
     
-#     ax[1].plot(classified_pointcloud['latitude'][classified_pointcloud['class_ph'] == 40.0],
+#     ax[1].plot(classified_pointcloud['lat_ph'][classified_pointcloud['class_ph'] == 40.0],
 #                 classified_pointcloud['ortho_h'][classified_pointcloud['class_ph'] == 40.0],
 #                 'o', color='green', label='Bathymetry', markersize=5, zorder=5)
 
